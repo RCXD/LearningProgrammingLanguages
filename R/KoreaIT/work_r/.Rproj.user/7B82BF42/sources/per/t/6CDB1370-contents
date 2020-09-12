@@ -1,0 +1,149 @@
+#day01_basic
+#author : kch
+#place : KoreaIT
+#date : '20-08-08
+
+
+#1. Ctrl+Enter - 실행 후 다음 '실행라인'으로 이동
+'Hellow! World'
+
+#2. Alt+Enter - 실행 후 제자리에 남기
+
+#3. Alternative way
+print("Hellow world")
+print('Hellow world')
+'Hellow'
+"Hellow"
+
+#4. Calculation
+1+1
+print(1+1)
+
+#5. Unicode
+'한글'
+
+#6. Data type
+##1. Data : Obserable / integer, characters, real numbers, logic value
+##2. characters : 'string', "string"
+##3. typeof()
+### strings -> character
+### numbers -> integer, double, complex
+### etc -> raw?, NULL, closure, logical, ...
+#### GO help(typeof)
+
+typeof(1+1) #double
+typeof(1) #double
+typeof('hellow world') #character
+typeof(1.00000000000000023948) #double
+typeof(NULL) #NULL
+typeof(230948.32910293818e-1239) #double
+typeof(TRUE) #logical
+
+#명령어 일부를 치면 콤보박스가 나옴 - 설명 및 사용법 확인 가능.
+
+#7. Basic Calculation(Four-point Operation)
+## multiplication, Division
+232*234
+224/26324
+3/5
+4/4
+typeof(4/4)
+typeof(3/4)
+##Finding Quotient
+7%/%3 #how many -3 : 2 
+##Finding remainder
+7%%3  #7-3-3 =1
+##adding character
+'1'+'1' #error
+##adding logical
+TRUE + TRUE #converted to "integer"
+typeof(TRUE+TRUE) #integer
+typeof(3.14+TRUE) #double
+typeof(122304982039480293840298+TRUE) #double
+typeof(TRUE*5) #double
+
+#8. Day, Date : 데이터 type이 아님. 편의로 만든 형태. 
+    #국가마다 표기법과 기준이 다름.
+    #엑셀을 생각하지말것.
+    #외부 Package, Library가 해법
+    #외부라이브러리 이용은 필수. 표기방식, 공휴일 등등 모든게 다름.
+## Lubridate
+
+
+#========================#
+#1. 외부패키지 설치 
+install.packages('lubridate')
+##오타에 매우 유의!
+##CRAN에 있는것만 조회 가능.
+##CRAN에 있는데 조회안되는경우도 있나?
+##CRAN에서 직접 zip파일이 다운이 안되면 다른 방법이 있겠지?
+ #구글링.
+
+#2. 외부패키지 사용
+library('lubridate')
+#or
+library(lubridate)
+
+now()
+date(now())
+
+#========================#
+#Practice Set1#
+#1. Year
+year(now())
+year('2020-08-08')
+year(date(now()))
+year(day(now())) #error : origin must be supplied?
+??origin
+origin #1970-01-01 UTC
+year(origin) #1970
+origin = "1970-01-03"
+origin
+now()
+#2. Month
+month(now())
+month(date(now()))
+month('2020-11-31') #error. no 31th at Nov.
+
+#3. Day
+day(now())
+
+#4. Weekday?? : order of weeks : week()
+week(now())
+week('2020-08-08') #32
+week('2020-08-01') #31
+
+#========================#
+#Practice Set2#
+#1. addition of date
+days(1) # period object. #1d 0H 0M 0S
+day('2020-08-08')
+#Q1. tommorow
+date(now()+days(1))
+date(now()-days(-1))
+now()+weeks(1/7)
+#A1
+now()+days(1)
+now()-days(-1)
+
+#Q2. a week after
+date(now()+days(7))
+#A2
+now()+days(7)
+now()+weeks(1) #correct
+now()+week(1) #error
+
+#Q3. a week before
+date(now()-days(7))
+#A3
+now()-days(7)
+#========================#
+
+#Questions
+#1. {base}?
+#2. List? Vector?
+
+
+#Found Tips
+#console clear : Ctrl+L
+
