@@ -30,4 +30,4 @@
    1. [R Version 4.0.0 이상](https://cran.r-project.org/bin/windows/Rtools/)
    2. [R Version 3.x.x](https://cran.r-project.org/bin/windows/Rtools/history.html)
 2. [Eikon Data API 다운로드](https://developers.refinitiv.com/article/setup-jupyter-notebook-r)
-3. [Plotly for R 다운로드](https://plot.ly/r/getting-started/)
+3. [Plotly for R 다운로드](https://plot.ly/r/getting-started/)  
