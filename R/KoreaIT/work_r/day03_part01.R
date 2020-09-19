@@ -166,3 +166,142 @@ mem2
 head(mem2); tail(mem2)
 #"많은 데이터를 처리할 때 상당히 중요한 작업임."
 
+# 실습 : 평균점수가 평균 이상인 데이터만 조회
+summary(mem2)
+mem2[mem2$'평균'>=80.83, 3] #열 이름이 한글일 때는 가급적 ''로 표시! 호환성을 높일 수 있다.
+mem2[mem2$'평균'>=mean(mem2$'평균'), 3]
+
+#grep으로 어떻게 푼다는거지??
+#코드도 불러와서 ?표시된거만 싹다 긁어와도 되겠다.
+
+
+#잡음이 섞인 데이터 처리
+# skip 옵션을 사용
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_noise.txt')
+#노이즈 데이터로 인해 정방형 데이터가 아니면 에러 발생
+#노이즈가 있는 행이 어딘지 알고 있을 때, skip 가능
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_noise.txt', header=T, skip=3)
+#스킵기능은 앞에밖에 안되나?
+#5행까지만 채우기 : nrow옵션
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_noise.txt', header=T, skip=3, nrow=5)
+
+#구분자가 있는 경우, 임의의 구분자 정의
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_sep1.txt', header=T, sep=';')
+#실습
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_sep2.txt', header=T, sep=',')
+
+#클립보드로부터 데이터 읽기
+# Ctrl+C 데이터 읽기
+""" 클립보드 데이터
+이름;성적;평균
+김가을;A;90
+홍길동;C;70
+김부장;F;65
+"""
+""" https://en.wikipedia.org/wiki/World_Tourism_rankings
+Rank	Destination	International
+tourist
+arrivals
+(2018)[1]	International
+tourist
+arrivals
+(2017)[1]	Change
+(2017 to
+2018)
+(%)	Change
+(2016 to
+2017)
+(%)
+1	 France	89.4 million	86.9 million	Increase 2.9	Increase 5.1
+2	 Spain	82.8 million	81.9 million	Increase 1.1	Increase 8.7
+3	 United States	79.6 million	76.9 million	Increase 3.5	Increase 0.7
+4	 China	62.9 million	60.7 million	Increase 3.6	Increase 2.5
+5	 Italy	62.1 million	58.3 million	Increase 6.7	Increase 11.2
+6	 Turkey	45.8 million	37.6 million	Increase 21.7	Increase 24.1
+7	 Mexico	41.4 million	39.3 million	Increase 5.5	Increase 12.0
+8	 Germany	38.9 million	37.5 million	Increase 3.8	Increase 5.2
+9	 Thailand	38.2 million	35.5 million	Increase 7.9	Increase 9.1
+10	 United Kingdom	36.3 million	37.6 million	Decrease 3.5	Increase 5.1
+"""
+
+read.table('clipboard', header=T, sep=';')
+read.table('clipboard', header=T, sep='\t')
+
+#결측치 데이터 처리
+mem_na = read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_NA.txt',header=T, sep=',')
+# 결측치는 NA값으로 채워진다.
+#결측치 존재여부 확인하기
+is.na(mem_na)
+#table 함수를 쓰면 빈도수를 알 수 있다.
+table(is.na(mem_na))
+#열을 정의하면 더 세부적으로 확인 가능
+table(is.na(mem_na$'평균'))
+#결측치 해결방법
+#1. 결측치 채우기
+mem_na[is.na(mem_na)] <- 0
+mem_na
+# 데이터 내용을 잘 알고 있을 때만 유용. 데이터 속성이 변경될 수 있다.
+summary(mem_na) #평균이 많이 내려가는 등
+
+#결측치가 이미 무언가로 채워져 있는 경우
+#2. NA가 아닌 결측치 처리
+read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_NA2.txt', header=T, sep=',')
+#is.na로 추적할 수 없다.
+#무의미 데이터를 NA로 변경하기
+mem_na2 <- read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_NA2.txt', header=T, sep=',', na.strings = '-')
+#실습 : 결측치를 평균열의 평균으로 채우기
+mem_na2[is.na(mem_na2)] <- 0
+mem_na2
+mean(mem_na2$'평균')
+mem_na2[mem_na2$'평균'==0,'평균'] <- as.integer(mean(mem_na2$'평균'))
+summary(mem_na2)
+
+#문제점..
+mean(c(90, 70, 95, 100, 66, 92, 83, 88))
+mean(c(90, 70, 95, 100, 66, 92, 83, 88, 0, 0, 0))
+#이 둘이 너무 다른데...?
+mem_na3 <- read.table('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/member_yes_NA2.txt', header=T, sep=',', na.strings = '-')
+mem_na3
+mem_na3[is.na(mem_na3)] <- 0
+mem_na3
+mem_na2[mem_na3$'평균'==0,'평균'] <- 85
+mem_na3
+summary(mem_na3)
+
+
+#CSV는 comma seperated value
+#Windows에서 호환성이 좋아서 많이 사용하는 포맷
+#csv는 엑셀하고는 무관한 포맷임
+
+#CSV용 함수
+read.csv('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/fruits.csv')
+#헤더 지정은 자동인 듯. 단, '순번' 메타데이터가 꼬이게 됨.
+readLines('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/fruits.csv')
+
+
+#'순번' 메타데이터를 rowname으로 설정해주기
+read.csv('https://raw.githubusercontent.com/luxdolorosa/data_set/master/etc/fruits.csv', row.names = '순번')
+# '순번' 열이 1~7이 아니라 다른 것이라면 자동으로 순번을 매겨주겠지.
+
+
+#엑셀 데이터 불러오기
+#보안의 중요성... 네트워크에서 엑셀파일 불러오는 것은 불가능
+#엑셀은 visual basic으로 프로그래밍이 가능하므로 해킹공격이 가능하다.
+#주의사항 : 네트워크에서 불러오는 형태는 자동으로 암호가 걸려서 데이터가 읽어지지 않음.
+
+
+#엑셀 패키지 설치
+install.packages('xlsx')
+library('xlsx')
+# gsub('\\','/','C:\GitHub\LearningProgrammingLanguages\R\KoreaIT\work_r\FileAccessSample\')
+# read.xlsx(gsub('\','/',C:\GitHub\LearningProgrammingLanguages\R\KoreaIT\work_r\FileAccessSample\'))
+# getwd()
+read.xlsx('FileAccessSample/fruits_etc.xlsx') #시트명때문에 에러
+read.xlsx('FileAccessSample/fruits_etc.xlsx', sheetIndex = 1) #인코딩 에러
+fruits2 <- read.xlsx('FileAccessSample/fruits_etc.xlsx', sheetIndex = 1, encoding = 'UTF-8')
+#실습 : fruits2의 '구분'이 결측치인 데이터의 가격 평균 구하기
+fruits2[is.na(fruits2)] <- 3 #수치값이 아니라면, 명시적인 값으로 정해줘도 되겠지..
+fruits2[fruits2$'구분','가격'] #이건 NA값이 제외되어서 나오네?
+fruits2[fruits2$'구분'==3,'가격']
+mean(fruits2[fruits2$'구분'==3,'가격'])
+
