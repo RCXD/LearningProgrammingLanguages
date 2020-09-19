@@ -1,0 +1,3 @@
+hello
+korea
+this is file get example
