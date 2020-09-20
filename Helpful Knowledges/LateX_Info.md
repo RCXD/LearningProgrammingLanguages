@@ -9,11 +9,13 @@
 ## Examples / Testing
 1. Markdown LateX  
     $\bigcup_1^2 math$  
-    1. Not working on Github
-2. Web Links using sciweavers.org
-   ![equation](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
-3. Web Links using codecogs
-   ![equation](https://latex.codecogs.com/svg.latex?signal%20\int^a_b%20final)
+   - **Not working on Github**  
+2. Web Links using sciweavers.org  
+   ![equation](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)  
+   - **Working on GitHub**  
+3. Web Links using codecogs  
+   ![equation](https://latex.codecogs.com/svg.latex?signal%20\int^a_b%20final)  
+   - **Working on GitHub**  
  
 ## Documents
 1. [Jupyter LateX Document](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html)  
