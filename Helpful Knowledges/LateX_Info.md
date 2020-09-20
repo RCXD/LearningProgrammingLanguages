@@ -16,6 +16,8 @@
 3. Web Links using codecogs  
    ![equation](https://latex.codecogs.com/svg.latex?signal%20\int^a_b%20final)  
    - **Working on GitHub**  
+4. **But Dangerous**
+5. Recommendation : Jupyter Ipython Notebook
  
 ## Documents
 1. [Jupyter LateX Document](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html)  
