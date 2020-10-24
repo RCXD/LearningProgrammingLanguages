@@ -9,7 +9,7 @@ class LinkedList:
         self.count=0
 
     #추가
-    def append(self,data):
+    def append(self,data):  ㅜ  
         newNode = Node(data)
         curr=self.head
         for i in range(self.count):
