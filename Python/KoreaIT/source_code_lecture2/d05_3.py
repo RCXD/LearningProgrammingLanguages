@@ -36,13 +36,13 @@ class CircularQueue:
     def show(self):
         if not self.is_empty():
             currIdx = self.front
-            cnt = 0
+            #cnt = 0
             while True:
                 print(self.ql[currIdx].data)
                 currIdx+=1
                 currIdx%=MAX_SIZE
-                if(self.ql[currIdx]==''or cnt==MAX_SIZE):
-                    break
+                if(self.ql[currIdx]==''or currIdx==self.front): #cnt==MAX_SIZE):
+                    break #한바퀴 돌아서 같았다는 말은 한바퀴 돌았다는 것. 카운트 없이 가능하다고 함.
     
 
 #이 자료구조 수업은 선행학습 없이는 살아남을 수가 없는 것 같다.

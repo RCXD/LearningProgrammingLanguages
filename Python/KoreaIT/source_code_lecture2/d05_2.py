@@ -45,6 +45,9 @@ class LinkedQueue:
                 self.rear = None
     #front부터 다음노드로 이동하면서 하나씩 출력
     def show(self):
+        if self.is_empty():
+            print("It's empty")
+            return
         curr=self.front
         while curr.next != None:
             print(curr.data, end=' ') #헤드가 없으니 curr부터가 데이터임.
@@ -54,6 +57,7 @@ class LinkedQueue:
 #자료구조는 자료를 만들어내는게... 중요하다나 뭐라나
 #테트리스 소스파일도 찾아보라나?
 
+'''
 li = LinkedQueue()
 li.enQueue('A')
 li.enQueue('B')
@@ -62,3 +66,4 @@ li.enQueue('D')
 li.show()
 li.deQueue()
 li.show()
+'''
