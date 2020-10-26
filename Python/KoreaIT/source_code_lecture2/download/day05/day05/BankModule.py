@@ -37,6 +37,7 @@ class LinkedQueue:
             if self.front is None:
                 #아직 값이 남아있는 rear를 None으로 변경해준다
                 self.rear = None
+        return data
 
     #front부터 다음노드로 이동하면서 하나씩 출력
     def show(self):

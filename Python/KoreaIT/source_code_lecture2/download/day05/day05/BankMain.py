@@ -18,6 +18,7 @@ while True:
         #다음번호
         choice=int(input("1. 입출금 관련업무\n2. 예금, 대출 관련업무\n"))
         #함수호출
+        bm.callNum(choice)
     elif choice==4:
         print("안녕히가세요")
         break
