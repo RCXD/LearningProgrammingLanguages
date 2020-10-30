@@ -1,5 +1,2 @@
-﻿  1028_3.cpp
-C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1028\1028_3.cpp(33,9): warning C4477: 'scanf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
-C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1028\1028_3.cpp(72,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1028\1028_3.cpp(97,12): error C2660: 'del': 함수는 1개의 인수를 사용하지 않습니다.
-C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1028\1028_3.cpp(50,6): message : 'del' 선언을 참조하십시오.
+﻿  1028_2.cpp
+  Prj_1028.vcxproj -> C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Debug\Prj_1028.exe
