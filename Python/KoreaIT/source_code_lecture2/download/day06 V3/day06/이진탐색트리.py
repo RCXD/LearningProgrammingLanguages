@@ -31,31 +31,67 @@ class BST:
         self.queue.append(newNode)
     
     def cinsertNode(self,data,node):
-        if node is None: #첫 추가일때 진입
+        if node is None:
             node=Node(data)
             self.queue.append(node)
             self.count+=1
-            if self.root is None: #루트가 비어있는지 확인
+            if self.root is None:
                 self.root=node
         else:
             if node.data>data:
                 node.left=self.cinsertNode(data,node.left)
             else:
                 node.right=self.cinsertNode(data,node.right)
-        return node #첫추가때는 리턴받아 쓰지는 않음
+        return node
 
-    def order(self,node):
+    def searchNode(self,data,node):
+        if node is None:
+            return None
+        if node.data==data:
+            return node
+        elif node.data>data:
+            return self.searchNode(data,node.left)
+        else:
+            return self.searchNode(data,node.right)
+
+    def preOrder(self,node):
         if node is not None:
-            self.order(node.left)
-            self.order(node.right)
+            #들어온 노드의 데이터 출력
             print(node.data,end=' ')
+            #왼쪽 노드를 넘겨준 채 다시 호출
+            self.preOrder(node.left)
+            #오른쪽 노드를 넘겨주며 다시 호출
+            self.preOrder(node.right)
+        
+
+    def inOrder(self,node):
+        if node is not None:
+            #들어온 노드의 왼쪽 노드를 넘겨주며 호출
+            self.inOrder(node.left)
+            #들어온 노드의 데이터 출력
+            print(node.data,end=' ')
+            #들어온 노드의 오른쪽 노드를 넘겨주며 호출
+            self.inOrder(node.right)
+
+    def postOrder(self,node):
+        if node is not None:
+            self.postOrder(node.left)
+            self.postOrder(node.right)
+            print(node.data,end=" ")
+            
 
 bst=BST()
 for data in [21,7,38,61,15,17,42,81,100,1]:
     bst.cinsertNode(data,bst.root)
 
-bst.order(bst.root)
-
+bst.preOrder(bst.root)
+print()
+bst.inOrder(bst.root)
+print()
+bst.postOrder(bst.root)
+print()
+findNode = bst.searchNode(61,bst.root)
+print(findNode.data)
 
 
 
