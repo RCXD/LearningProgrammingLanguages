@@ -19,7 +19,6 @@ def QuickSort(ar, left, right):
 dataList = [6, 2, 7, 9, 4, 1, 8, 5, 3]
 size = 9
 #size = int(input('값 개수: '))
-
 #for i in range(size):
     #dataList.append(int(input(str(i+1)+'번재 값: '))) #input 안에는 문자열 하나만 보내야함!! ,를 쓰지 말것. 잦은 실수
 
