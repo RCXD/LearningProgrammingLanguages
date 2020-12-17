@@ -17,6 +17,11 @@ public class PrintTest2 {
 		System.out.println("\"코리아 IT 아카데미\" 입니다.");
 		System.out.println("'정다솔'\t: 자바1");
 		System.out.println("\\O/");
+		
+		//syso쓰고 Ctrl+Space 누르면 자동완성됨.
+		System.out.println();
+		//sysp쓰고 Ctrl+Space: 그냥 print
+		
 	}
 }
 
