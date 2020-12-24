@@ -1,0 +1,57 @@
+package day06;
+
+import java.util.Scanner;
+
+public class Hotel {
+	public static void main(String[] args) {
+		//101È£~103È£
+		//201È£~203È£
+		//301È£~303È£
+		
+		//ÀÔ·Â ¿¹
+		//101È£ ¿ù¼¼:
+		//102È£ ¿ù¼¼:
+		//...
+		//303È£ ¿ù¼¼
+		
+		//1Ãþ ÃÑ ¿ù¼¼:
+		//1Ãþ Æò±Õ ¿ù¼¼:
+		//2Ãþ..
+		//...
+		//3Ãþ Æò±Õ ¿ù¼¼:
+		//ÃÑ ¿ù¼¼ÀÇ ÇÕ:
+		//ÀüÃ¼ ¿ù¼¼ Æò±Õ:
+		
+		//Strategy: 2Â÷¿ø ¹è¿­
+		int FLOORS = 3;
+		int DOORS = 3;
+		int[][] rooms = new int[FLOORS][DOORS];
+		int[][] rent = new int[FLOORS][DOORS];
+		Scanner sc = new Scanner(System.in);
+		int[] sums = new int[FLOORS];
+		float[] avgs = new float[FLOORS];
+		String unit = " ¸¸¿ø";
+		
+		for (int j = 0; j < rooms.length; j++) {
+			for (int i = 0; i < rooms[0].length; i++) {
+				System.out.println((j+1)+"0"+(i+1)+"È£ ¿ù¼¼: ");
+				rent[j][i]=sc.nextInt();
+				sums[j] += rent[j][i];
+			}
+			avgs[j] = sums[j]*1.0F/DOORS;
+		}
+		System.out.println();
+		
+		int SUM = 0;
+		float AVG = 0.0F;
+		for (int i = 0; i < sums.length; i++) {
+			System.out.println((i+1)+"Ãþ ÃÑ ¿ù¼¼: "+sums[i]+unit);
+			SUM += sums[i];
+			System.out.println((i+1)+"Ãþ Æò±Õ ¿ù¼¼: "+avgs[i]+unit);
+		}
+		AVG = SUM*1.0F/(FLOORS*DOORS);
+		
+		System.out.println("ÃÑ ¿ù¼¼ÀÇ ÇÕ: "+SUM+unit);
+		System.out.println("ÀüÃ¼ ¿ù¼¼ÀÇ Æò±Õ: "+AVG+unit);
+	}
+}
