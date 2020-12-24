@@ -18,5 +18,6 @@ public class SwitchTest {
 			System.out.println("잘못입력했음.");
 			break; //단축키(Ctrl+Alt+위/아래)가 이거 만들때 상당히 유용한듯.
 		}
+		//이런 경우는, 오답일 경우/잘못 입력했을 경우 다시 입력하는 상황으로 들어갈 수 없다.
 	}
 }
