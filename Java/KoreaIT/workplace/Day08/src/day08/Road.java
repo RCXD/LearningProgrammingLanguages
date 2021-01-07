@@ -16,12 +16,22 @@ class Car{
 	boolean isStart = false;
 	int pass;
 	
-	Car(String brand, String color, int price, int pass){
+	
+	
+	public Car(String brand, String color, int price, int pass) {
+		super();
 		System.out.println("Car 클래스 생성자 호출!");
-		this.brand=brand;
-		this.color=color;
-		this.price=price;
+		this.brand = brand;
+		this.color = color;
+		this.price = price;
+		this.pass = pass;
 	}
+//	Car(String brand, String color, int price, int pass){
+//		System.out.println("Car 클래스 생성자 호출!");
+//		this.brand=brand;
+//		this.color=color;
+//		this.price=price;
+//	}
 	void enginStart() {
 		if(isStart) { //boolean 타입을 쓰면 ==을 쓸 필요가 없다.
 			System.out.println("이미 시동이 켜져 있습니다.");
