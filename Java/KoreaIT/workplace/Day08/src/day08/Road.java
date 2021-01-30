@@ -16,8 +16,8 @@ class Car{
 	boolean isStart = false;
 	int pass;
 	
-	
-	
+	public Car() {
+		}
 	public Car(String brand, String color, int price, int pass) {
 		super();
 		System.out.println("Car 클래스 생성자 호출!");
