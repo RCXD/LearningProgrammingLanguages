@@ -186,7 +186,7 @@ void setup(){
 ///Loop Function
 void loop(){
 #ifdef SERIAL
-//  while(!Serial); //이건 왜 비활성화가 안됨? 컴파일러 문제인듯.
+  while(!Serial);
 #endif
 #ifdef JOYSTICK
   readJoystick();
@@ -292,9 +292,11 @@ void moveMouse(){
 #endif
 #endif
 
+
+#ifdef RGB
 #ifdef RGB_TEST
 void testRGB(void){
-  int i = 6;
+  int i = 3;
   while(i-->0){
     Esplora.writeRed(255);
     delay(100);
@@ -308,7 +310,6 @@ void testRGB(void){
   }
 }
 #endif
-#ifdef RGB
 void readRGB(void){
   #if defined JOYSTICK_IN || defined JOYSTICK
   xAxis = Esplora.readJoystickX();
