@@ -22,11 +22,11 @@
 //#define JOYSTICK 1
 //#define SWITCH 1
 //#define MIC 1
-//#define CDS 1
+#define CDS_CALI 1
 //#define TEMP 1
 //#define ACC 1 
 //#define RGB 1//option: RGB_TEST, RGB_SHOW, JOYSTICK_IN, SLIDER
-#define PIEZO 1
+//#define PIEZO 1
 
 
 
@@ -45,7 +45,7 @@
 //#define MOUSE //demands JOYSTICK
 //#define MONITOR //Choose either MONITOR or PLOTTER, not both
 //#define PLOTTER
-#define PIEZO_OUT
+//#define PIEZO_OUT
 //#define RGB_OUT
 
 
@@ -58,7 +58,7 @@
 
 
 ///Preprocessors, Error patterns
-#if JOYSTICK + SWITCH + MIC + CDS + TEMP + ACC + RGB + PIEZO > 1
+#if JOYSTICK + SWITCH + MIC + CDS_CALI + TEMP + ACC + RGB + PIEZO > 1
   #error "Duplicated Projects: Check Conf 1"
 #endif
 #if (defined JOYSTICK) && (defined JOYSTICK_IN)
@@ -73,13 +73,13 @@
 #if (defined MIC) && (defined MIC_IN)
   #error "MIC Duplication"
 #endif
-#if (defined CDS) && (defined CDS_IN)
-  #error "CDS Duplication"
+#if (defined CDS_CALI) && (defined CDS_IN)
+  #error "CDS_CALI Duplication"
 #endif
 #ifdef MOUSE
 #include <Mouse.h>
 #endif
-#ifdef ACC || RGB
+#ifdef ACC || RGB || CDS_CALI
   #ifdef MONITOR || PLOTTER
     #define SERIAL
   #endif
@@ -111,12 +111,19 @@ boolean isSW3 = false;
 #if (defined MIC) || (defined MIC_IN)
 static int mic = 0;
 #endif
-#if (defined CDS) || (defined CDS_IN)
+#if defined CDS_IN || defined CDS_CALI
 int light = 0;
+#endif
+#ifdef CDS_IN
 int lowLight = 247*4; //light sensor reading when it's covered
 int highLight = 1023; //the maximum light sensor reading
 int minGreen = 0; //minimum brightness of the green LED
 int maxGreen = 255; //maximum brightness of the green LED
+#elif defined CDS_CALI
+int brightness = 0;
+int lightMin = 1023;
+int lightMax = 0;
+bool calibrated = false;
 #endif
 #ifdef TEMP
 #endif
@@ -142,6 +149,10 @@ const int note[] = { 262/*C*/, 277/*C#*/, 294/*D*/, 311/*D#*/, 330/*E*/, 349/*F*
 
 ///setup Function
 void setup(){
+#ifdef SERIAL
+  Serial.begin(9600);
+#endif
+  
 #ifdef JOYSTICK
   #ifdef MOUSE
   Mouse.begin();
@@ -160,7 +171,8 @@ void setup(){
 #ifdef MIC
 #endif
 
-#ifdef CDS
+#ifdef CDS_CALI
+  Serial.println("To Calibrate the light sensor, press and hold Switch 1");
 #endif
 
 #ifdef TEMP
@@ -175,10 +187,6 @@ void setup(){
 
 #ifdef PIEZO
 #endif
-
-#ifdef SERIAL
-  Serial.begin(9600);
-#endif
 }
 
 
@@ -186,7 +194,7 @@ void setup(){
 ///Loop Function
 void loop(){
 #ifdef SERIAL
-  while(!Serial);
+  while(!Serial); //이건 왜 비활성화가 안됨? 컴파일러 문제인듯.
 #endif
 #ifdef JOYSTICK
   readJoystick();
@@ -206,15 +214,10 @@ void loop(){
   #endif
 #endif
 
-#ifdef CDS
-  light = Esplora.readLightSensor();
-  #ifdef RGB_OUT
-  #ifdef RAW_CDS
-  green = light;
-  #else
-  green = constrain(map(light, lowLight, highLight, minGreen, maxGreen), 0, 255);
-  #endif
-  #endif
+#ifdef CDS_CALI
+  if (Esplora.readButton(1) == LOW){
+    calibrate();
+  }
 #endif
 
 #ifdef TEMP
@@ -292,11 +295,9 @@ void moveMouse(){
 #endif
 #endif
 
-
-#ifdef RGB
 #ifdef RGB_TEST
 void testRGB(void){
-  int i = 3;
+  int i = 6;
   while(i-->0){
     Esplora.writeRed(255);
     delay(100);
@@ -310,6 +311,7 @@ void testRGB(void){
   }
 }
 #endif
+#ifdef RGB
 void readRGB(void){
   #if defined JOYSTICK_IN || defined JOYSTICK
   xAxis = Esplora.readJoystickX();
@@ -394,6 +396,28 @@ void writeSound(){
   }
   else{
     Esplora.noTone();
+  }
+}
+#endif
+
+#if defined CDS_CALI || defined CDS_IN
+void readLight(){
+  light = Esplora.readLightSensor();
+  brightness = constrain(map(light, lightMin, lightMax, 0, 255), 0, 255);
+}
+#endif
+#if defined CDS_CALI
+void calibrate(){
+  Serial.println("While holding switch 1, shine a light on the light sensor, then cover it.");
+  while(Esplora.readButton(SWITCH_1)==LOW){
+    light = Esplora.readLightSensor();
+    if(light > lightMax){
+      lightMax = light;
+    }
+    if (light < lightMin){
+      lightMin = light;
+    }
+    calibrated = true;
   }
 }
 #endif
