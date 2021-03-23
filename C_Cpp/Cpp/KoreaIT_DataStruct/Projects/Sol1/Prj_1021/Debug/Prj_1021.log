@@ -1,3 +1,2 @@
 ﻿  test.cpp
-C:\Users\user\Documents\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1021\test.cpp(3,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-C:\Users\user\Documents\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1021\test.cpp(4,2): error C2065: 'counter': 선언되지 않은 식별자입니다.
+  Prj_1021.vcxproj -> C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Debug\Prj_1021.exe
