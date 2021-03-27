@@ -71,3 +71,5 @@ A.addPurchase(MyShops.shopList[2],'gummy bear')
 A.addPurchase(MyShops.shopList[2],'candy')
 A.checkTotalPurchase()
 A.checkDiscntEligib()
+
+ 
