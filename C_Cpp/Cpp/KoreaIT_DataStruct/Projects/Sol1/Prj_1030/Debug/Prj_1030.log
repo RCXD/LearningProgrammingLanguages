@@ -1,4 +1,1 @@
-﻿  1030_4.cpp
-C:\Users\user\Documents\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Prj_1030\1030_4.cpp(21,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-  LINK : C:\Users\user\Documents\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Debug\Prj_1030.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
-  Prj_1030.vcxproj -> C:\Users\user\Documents\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Debug\Prj_1030.exe
+﻿  Prj_1030.vcxproj -> C:\GitHub\LearningProgrammingLanguages\C_Cpp\Cpp\KoreaIT_DataStruct\Projects\Sol1\Debug\Prj_1030.exe
